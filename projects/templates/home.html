@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<div style="height:100vh">
+    <main class="container py-5">
+        <section class="card card-body bg-dark bg-opacity-25">
+            <h1 class="display-3 text-center fw-bold text-light" style="font-family: 'Pangolin', cursive;">Bienvenidos a DoggieMilo</h1>
+            <div class="" style=" text-align: center;">
+                <img src="{% static 'img/logo2.png' %}"" alt="Logo Principal" class="position-relative" style="height: 23%; width: 23%; ">
+            </div>
+            {% if user.is_authenticated %}
+            <p class="text-center fs-3 " style="font-family: 'Poppins', sans-serif;"">
+            ¡Genial! Ya puedes navegar en nuestros servicios</p>
+            <p class="text-center fs-3 " style="font-family: 'Poppins', sans-serif;"">
+            Recuerda mantener el respeto entre los usuarios, un animal se valora y respeta
+            </p>
+            <div class="text-center">
+                <a class="btn btn-outline-light" href="/adopta/">
+                    ¡Adopta!
+                </a>
+                <a class="btn btn-outline-light" href="/logout/">
+                    Cerrar sesión
+                </a>
+            </div>
+            {% else %}
+            <p class="text-center fs-3 " style="font-family: 'Poppins', sans-serif;">¡Inicia sesión o crea una cuenta para poder acceder a nuestros servicios a futuro!</p>
+            <div class="text-center">
+                <a class="btn btn-outline-light" href="/signin/">
+                    Iniciar Sesión
+                </a>
+                <a class="btn btn-outline-light" href="/signup/">
+                    Crear cuenta
+                </a>
+            </div>
+            
+            {% endif %}
+        </section>
+        
+    </main>
+</div>
+
+{% endblock %}

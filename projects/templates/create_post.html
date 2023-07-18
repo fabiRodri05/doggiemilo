@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="height:135vh">
+    <main class="container">
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+
+                <form method="POST" class="card card-body mt-3 bg-light bg-opacity-25" enctype="multipart/form-data">
+                    <h1 class="text-center text-secondary-emphasis fw-bold">Nuevo Post</h1>
+                    {{ error }}
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-outline-danger">
+                        ¡Postear!
+                    </button>
+                    
+                </form>
+
+            </div>
+        </div>
+   </main>
+</div>
+
+{% endblock %}

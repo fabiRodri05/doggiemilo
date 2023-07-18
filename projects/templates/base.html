@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DoggieMilo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
+          body{
+            background-image: linear-gradient(135deg, #787eff,#8cccd4,#bca4d4);
+            background-size: auto;
+            min-height: max-content;
+            animation:fanimado 30s infinite;
+          }
+
+          @keyframes fanimado{
+            0%{
+              background-position: 0 50%;
+            }
+            50%{
+              background-position: 100% 50%
+            }
+            100%{
+              background-position: 0% 50%;
+            }
+          }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark bg-opacity-25">
+        <div class="container">
+          <a class="navbar-brand text-light fw-bolder fs-2" href="/">DoggieMilo</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="/" class="nav-link active text-light">Inicio</a>
+                </li>
+               {% if user.is_authenticated %}
+                <li class="nav-item">
+                <a href="{% url 'adopta' %}" class="nav-link text-light">¡Adopta!</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'createpost' %}" class="nav-link text-light">Crear Post</a>
+                </li>
+                <li class="nav-item">
+                <a href="{% url 'logout' %}" class="nav-link text-light">Cerrar Sesión</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a href="{% url 'signup' %}" class="nav-link text-light">Crear Cuenta</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'signin' %}" class="nav-link text-light">Iniciar Sesión</a>
+                </li>
+               {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+          <div style="position: fixed;bottom: 10px;right: 10px;z-index: 1000;">
+            <div class="" style="vertical-align: middle;
+            display: flex; flex-direction: row;">
+              <a href="/recomiendanos/" class="btn btn-primary position-relative bottom-100">
+                ¡Sugerencias!
+                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                  <span class="visually-hidden">New alerts</span>
+                </span>
+              </a>
+            </div>
+          </div>
+          <div style="position: fixed;bottom: 10px;left: 10px;z-index: 1000;">
+            <div class="" style="vertical-align: middle;
+            display: flex; flex-direction: row;">
+              <button type="button" class="btn btn-outline-secondary" data-bs-toggle="popover" data-bs-title="Version 1.0" data-bs-content="¡En proceso de mejora!">Versión</button>
+            </div>
+          </div>
+    <script>
+      const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+      const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+    </script>
+    {% block content %}
+
+    {% endblock %}
+</body>
+</html>

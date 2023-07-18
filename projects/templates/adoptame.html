@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ 
+<main class="container">
+    <section class="card card-body mt-3 bg-dark bg-opacity-25 justify-content-center">
+        <h1 class="display-3 text-center fw-bold text-light pb-3">¡Adopta y Conoce!</h1>
+        <div class="container">
+            <p class="text-start fs-3 fw-bold text-light">Resultados Disponibles: {{posts|length}}</p>
+        </div>
+        <ul>
+            {% for post in posts %}
+                <div class="align-items-center justify-content-center">
+                    <div class="row d-flex float-start" style="align-items: center;justify-content: center;padding:0px 5px">
+                        <div class="col-10 col-md-6 col-lg-9 col-sm-3 align-self-center mt-2 justify-content-between">
+                            <li class="card card-body mb-2 bg-opacity-25 " style="width:230px;height:410px;border-color: #787eff; background: #eee;">
+                                <a href="{% url 'postdetail' post.id %}" class="text-decoration-none">
+                                    <h1 class="text-center text-secondary-emphasis fw-bold">{{post.Nombre}}</h1>
+                                    {% if post.Imagen %}
+                                    <div class="card-img-top">
+                                        <div class="text-center">
+                                            <img src="{{ post.Imagen.url }}" class="img-thumbnail" alt="..." style="height:150px;width:150px; border-radius: 10px;" >
+                                        </div>
+                                    </div>
+                                    {% else %}
+                                    <img src="" style="height:100px;width:100px"alt="No imagen">
+                                    {% endif %}
+                                    <div class="card-text text-secondary">
+                                        <p>Raza: {{post.Raza}}</p>
+                                        <p>Sexo:{{post.sexo}}</p>
+                                        <p>Creado por: {{post.user.username}}</p>
+                                        <p>Publicado el: {{post.created|date:'M j Y'}}</p>
+                                    </div>
+                                </a>
+                            </li>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </ul>
+    </section>
+</main>
+{% endblock %}

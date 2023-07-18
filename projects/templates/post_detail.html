@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div style="height:100vh">
+    <main class="container">
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                
+            
+            
+                <form action="{% url 'deletepost' post.id %}" method="POST" class="card card-body mt-5">
+                    <h1 class="text-center text-secondary-emphasis fw-bold">{{post.Nombre}}</h1>
+                    {{error}}
+                    {% if post.Imagen %}
+                    <div class="card card-body ">
+                        <div class="text-center">
+                            <img src="{{ post.Imagen.url }}" style="height:150px;width:180px; border-radius: 10px;" alt="Imagen" >
+                    </div>
+                    {% endif %}
+                    <div class="card-text text-secondary">
+                        <p>Raza: {{post.Raza}}</p>
+                        <p>Descripción: {{post.Descripcion}}</p>
+                        <P>Sexo: {{post.sexo}}</P>
+                        <p>Publicado: {{post.created|date:'M j'}}</p>
+                        <p>Instagram o Número: {{post.RedSocial}}</p>
+                    </div>
+                    {% csrf_token %}
+                    {% if user.username == post.user.username %}
+                    <div class="row" style="padding: 2px 15px;">
+                        <button class="btn btn-outline-success">
+                            Borrar post
+                        </button>
+                        <a class="btn btn-outline-success" href="{% url 'modificar' post.id %}">
+                            Modificar
+                        </a>
+                    </div>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div style="height:100vh">
+    <main class="container">
+        <div class="row">
+            <div class="col-md-4 offset-md-4 pt-5">
+                <div class="card">
+                    <div class="card-body">
+                        {{error}}
+                      <h5 class="card-title">Recomendaciones</h5>
+                      <h6 class="card-subtitle mb-2 text-body-secondary">¡Ayudanos a mejorar!</h6>
+                      <form method="POST">
+                            {% csrf_token %}
+                            {{ error }}
+                            {{ form }}
+                        
+                            <div class="row px-4">
+                                <Button class="btn btn-outline-primary mt-2 ">
+                                    Enviar
+                                </Button>
+                            </div>
+                            
+                       </form>
+                     
+                    </div>
+                  </div>
+            </div>
+    
+        </div>
+    </main>
+</div>
+
+
+
+{% endblock %}
