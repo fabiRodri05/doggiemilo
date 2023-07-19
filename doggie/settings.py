@@ -127,7 +127,7 @@ STATIC_URL = 'static/'
 import os
 
 MEDIA_URL='/media/'
-MEDIA_ROOT=os.path.join(BASE_DIR,"projects/static")
+# MEDIA_ROOT=os.path.join(BASE_DIR,"projects/static")
 
 if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
